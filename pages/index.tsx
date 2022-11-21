@@ -21,9 +21,9 @@ export default function Home() {
       </Head>
 
       <main className='grid grid-cols-3 gap-8 h-screen p-8'>
-        <SectionCard sectionName='해야 할 일' button={<AddToDoButton />} />
-        <SectionCard sectionName='진행 중' />
-        <SectionCard sectionName='완료' />
+        <SectionCard sectionName='해야 할 일' useButton={true} />
+        <SectionCard sectionName='진행 중' useButton={false} />
+        <SectionCard sectionName='완료' useButton={false} />
       </main>
     </div>
   )
