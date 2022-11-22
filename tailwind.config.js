@@ -6,6 +6,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      maxHeight: {
+        'full': '100%',
+      },
       lineHeight: {
         '12': '3rem',
       }
