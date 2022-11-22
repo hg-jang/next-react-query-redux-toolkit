@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { Fragment, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import Head from 'next/head'
 
@@ -7,6 +7,7 @@ import { increment, decrement } from '../store/reducers/sample'
 
 import SectionCard from '../components/Card/SectionCard';
 import AddToDoButton from '../components/Button/AddToDoButton';
+import { ToDoStatus } from '../types/ToDo.type';
 
 export default function Home() {
   // const dispatch = useAppDispatch();
@@ -21,9 +22,9 @@ export default function Home() {
       </Head>
 
       <main className='grid grid-cols-3 gap-8 h-screen p-8'>
-        <SectionCard sectionName='해야 할 일' useButton={true} />
-        <SectionCard sectionName='진행 중' useButton={false} />
-        <SectionCard sectionName='완료' useButton={false} />
+        <SectionCard sectionName='해야 할 일' useButton={true} status={ToDoStatus.NONE} />
+        <SectionCard sectionName='진행 중' useButton={false} status={ToDoStatus.DOING} />
+        <SectionCard sectionName='완료' useButton={false} status={ToDoStatus.DONE} />
       </main>
     </div>
   )

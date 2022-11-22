@@ -12,7 +12,7 @@ const AddToDoButton: FunctionComponent<AddToDoButtonProps> = ({ isAdding, setIsA
 
   return (
     <button onClick={addToDo}
-      className="w-full p-2 bg-white opacity-50 border-solid border-black rounded-xl hover:opacity-75"
+      className="w-full p-2  border-solid border border-white rounded-xl hover:bg-white hover:opacity-75"
     >
       {!isAdding
         ? '+'
