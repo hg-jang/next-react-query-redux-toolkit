@@ -134,14 +134,14 @@ const SectionCard: FunctionComponent<SectionCardProps> = ({ sectionName, useButt
         ? <Fragment>
             {isAdding && <AddToDoInputContainer />}
             <AddToDoButtonContainer isAdding={isAdding} setIsAdding={setIsAdding} />
-            <div className="h-full mt-4 overflow-auto">
+            <div className="hidden-scrollbar h-full mt-4 overflow-auto">
               {TEMP_todos.map(toDo => {
                 return toDo.status === status && <ToDoCard key={toDo.id} toDo={toDo} />
               })}
             </div>
           </Fragment>
         : <Fragment>
-            <div className="h-full overflow-auto">
+            <div className="hidden-scrollbar h-full overflow-auto">
               {TEMP_todos.map(toDo => {
                 return toDo.status === status && <ToDoCard key={toDo.id} toDo={toDo} />
               })}
