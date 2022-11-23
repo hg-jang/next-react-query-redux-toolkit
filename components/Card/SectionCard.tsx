@@ -121,10 +121,6 @@ const SectionCard: FunctionComponent<SectionCardProps> = ({ sectionName, useButt
       id: 25,
       toDo: '방 청소',
       status: ToDoStatus.DONE,
-    }, {
-      id: 26,
-      toDo: '공부하기',
-      status: ToDoStatus.NONE
     },
   ]
 
@@ -137,16 +133,15 @@ const SectionCard: FunctionComponent<SectionCardProps> = ({ sectionName, useButt
       {useButton
         ? <Fragment>
             {isAdding && <AddToDoInputContainer />}
-            {/* <AddToDoButtonContainer isAdding={isAdding} setIsAdding={setIsAdding} /> */}
-            <div className="h-[calc(100%-5rem)] overflow-auto">
-            {/* <div className="h-[calc(100%-7rem)] mt-4 overflow-auto"> */}
+            <AddToDoButtonContainer isAdding={isAdding} setIsAdding={setIsAdding} />
+            <div className="h-full mt-4 overflow-auto">
               {TEMP_todos.map(toDo => {
                 return toDo.status === status && <ToDoCard key={toDo.id} toDo={toDo} />
               })}
             </div>
           </Fragment>
         : <Fragment>
-            <div className="h-[calc(100%-5rem)] overflow-auto">
+            <div className="h-full overflow-auto">
               {TEMP_todos.map(toDo => {
                 return toDo.status === status && <ToDoCard key={toDo.id} toDo={toDo} />
               })}
