@@ -21,11 +21,11 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className='grid grid-cols-3 gap-8 h-screen p-8'>
+      <div className='grid grid-cols-3 gap-8 h-screen p-8'>
         <SectionCard sectionName='해야 할 일' useButton={true} status={ToDoStatus.NONE} />
         <SectionCard sectionName='진행 중' useButton={false} status={ToDoStatus.DOING} />
         <SectionCard sectionName='완료' useButton={false} status={ToDoStatus.DONE} />
-      </main>
+      </div>
     </div>
   )
 }
