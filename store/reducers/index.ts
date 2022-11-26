@@ -1,9 +1,9 @@
 import { combineReducers } from '@reduxjs/toolkit'
 
-import sampleReducer from './sample'
+import toDoReducer from './toDo'
 
 const combinedReducer = combineReducers({
-  sample: sampleReducer,
+  toDo: toDoReducer,
 })
 
 export default combinedReducer
