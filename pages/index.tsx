@@ -1,17 +1,9 @@
-import { Fragment, useEffect } from 'react'
-import { useSelector } from 'react-redux'
 import Head from 'next/head'
 
-import { RootState, useAppDispatch } from '../store/store';
-import { increment, decrement } from '../store/reducers/sample'
-
 import SectionCard from '../components/Card/SectionCard';
-import AddToDoButton from '../components/Button/AddToDoButton';
 import { ToDoStatus } from '../types/ToDo.type';
 
 export default function Home() {
-  // const dispatch = useAppDispatch();
-  // const { count } = useSelector((state: RootState) => state.sample);
 
   return (
     <div>

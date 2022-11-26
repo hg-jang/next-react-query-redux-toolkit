@@ -1,22 +1,23 @@
 import { Fragment, FunctionComponent } from "react"
+
 import IconButton from '@mui/material/IconButton'
-import ClearIcon from '@mui/icons-material/Clear';
+import ClearIcon from '@mui/icons-material/Clear'
 import CheckIcon from '@mui/icons-material/Check'
 
-import { ToDoStatus } from "../../types/ToDo.type"
-
 interface ToDoHandleButtonProps {
-  status: ToDoStatus;
+  color: "success" | "error";
+  toDoHandler: any;
 }
 
-const ToDoHandleButton: FunctionComponent<ToDoHandleButtonProps> = ({ status }) => {
+const ToDoHandleButton: FunctionComponent<ToDoHandleButtonProps> = ({ color, toDoHandler }) => {
+
   return (
     <Fragment>
-      {status === ToDoStatus.DOING
-        ? <IconButton color="success">
+      {color === 'success'
+        ? <IconButton color={color} onClick={toDoHandler}>
             <CheckIcon />
           </IconButton>
-        : <IconButton color="error">
+        : <IconButton color={color} onClick={toDoHandler}>
             <ClearIcon />
           </IconButton>
       }
