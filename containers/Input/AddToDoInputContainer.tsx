@@ -1,25 +1,44 @@
 import { FormEvent, KeyboardEvent, useState } from "react"
+import { useDispatch } from "react-redux"
+import { useSelector } from "react-redux"
+
+import { RootState } from "../../store/store"
+import { addToDo } from "../../store/reducers/toDo"
+
 import AddToDoInput from "../../components/Input/AddToDoInput"
+import { ToDo, ToDoStatus } from "../../types/ToDo.type"
 
 const AddToDoInputContainer = () => {
-  const [newToDo, setNewToDo] = useState('')
+  const { toDos } = useSelector((state: RootState) => state.toDo)
+  const dispatch = useDispatch()
+
+  const [toDo, setToDo] = useState('')
   
-  function onChangeAddToDoInput(e: FormEvent<HTMLInputElement>) {
-    setNewToDo(e.currentTarget.value)
+  const onChangeAddToDoInput = (e: FormEvent<HTMLInputElement>) => {
+    setToDo(e.currentTarget.value)
   }
 
-  function onKeyUpEnter(e: KeyboardEvent<HTMLInputElement>) {
+  const addToDoHandler = (e: KeyboardEvent<HTMLInputElement>) => {
+    if(!toDo) return ;
+    
     if(e.key === 'Enter') {
-      const toDo = newToDo;
+      const ids = toDos.map(t => t.id)
+      const maxId = ids.length === 0 ? 1 : Math.max(...ids)
+      
+      const newTodo: ToDo = {
+        id: maxId + 1,
+        toDo: toDo,
+        status: ToDoStatus.NONE,
+      }
 
-      // dispatch
+      dispatch(addToDo(newTodo))
 
-      setNewToDo('')
+      setToDo('')
     }
   }
 
   return (
-    <AddToDoInput newToDo={newToDo} onChangeAddToDoInput={onChangeAddToDoInput} onKeyUpEnter={onKeyUpEnter} />
+    <AddToDoInput newToDo={toDo} onChangeAddToDoInput={onChangeAddToDoInput} onKeyUpEnter={addToDoHandler} />
   )
 }
 
