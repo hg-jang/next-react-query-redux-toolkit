@@ -1,18 +1,29 @@
-import { Fragment, FunctionComponent } from "react";
-import ToDoHandleButtonContainer from "../../containers/Button/ToDoHandleButtonContainer";
+import { DragEvent, Fragment, FunctionComponent } from "react";
 
 import { ToDo, ToDoStatus, ToDoStatusChange } from "../../types/ToDo.type";
 
-import ToDoHandleButton from "../Button/ToDoHandleButton";
+import ToDoHandleButtonContainer from "../../containers/Button/ToDoHandleButtonContainer";
 
 interface ToDoCardProps {
   toDo: ToDo
 }
 
 const ToDoCard: FunctionComponent<ToDoCardProps> = ({ toDo }) => {
-  
+
+  /**
+   * 드래그 시작점
+   */
+  const onDragStartHandler = (e: DragEvent<HTMLDivElement>) => {
+    console.log('Drag Start');
+    
+    e.dataTransfer.setData('toDoId', String(toDo.id))
+    e.dataTransfer.setData('status', toDo.status)
+  }
+
   return (
-    <div className="flex justify-between items-center mb-4 p-4 bg-white opacity-50 rounded-xl cursor-pointer hover:opacity-75">
+    <div className="flex justify-between items-center mb-4 p-4 bg-white opacity-50 rounded-xl cursor-pointer hover:opacity-75"
+      draggable onDragStart={onDragStartHandler}
+    >
       {toDo.toDo}
       <div>
         {toDo.status === ToDoStatus.NONE

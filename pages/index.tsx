@@ -1,7 +1,8 @@
 import Head from 'next/head'
 
-import SectionCard from '../components/Card/SectionCard';
-import { ToDoStatus } from '../types/ToDo.type';
+import DoingSectionCardContainer from '../containers/Card/SectionCard/DoingSectionCardContainer';
+import DoneSectionCardContainer from '../containers/Card/SectionCard/DoneSectionCardContainer';
+import NoneSectionCardContainer from '../containers/Card/SectionCard/NoneSectionCardContainer';
 
 export default function Home() {
 
@@ -14,9 +15,9 @@ export default function Home() {
       </Head>
 
       <div className='flex gap-8 h-screen p-8'>
-        <SectionCard sectionName='해야 할 일' useButton={true} status={ToDoStatus.NONE} />
-        <SectionCard sectionName='진행 중' useButton={false} status={ToDoStatus.DOING} />
-        <SectionCard sectionName='완료' useButton={false} status={ToDoStatus.DONE} />
+        <NoneSectionCardContainer />
+        <DoingSectionCardContainer />
+        <DoneSectionCardContainer />
       </div>
     </div>
   )

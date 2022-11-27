@@ -6,7 +6,8 @@ interface AddToDoButtonProps {
 }
 
 const AddToDoButton: FunctionComponent<AddToDoButtonProps> = ({ isAdding, setIsAdding }) => {
-  function addToDo() {
+
+  const addToDo = () => {
     setIsAdding(!isAdding)
   }
 

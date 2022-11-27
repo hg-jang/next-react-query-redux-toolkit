@@ -23,7 +23,7 @@ const AddToDoInputContainer = () => {
     
     if(e.key === 'Enter') {
       const ids = toDos.map(t => t.id)
-      const maxId = ids.length === 0 ? 1 : Math.max(...ids)
+      const maxId = ids.length === 0 ? 0 : Math.max(...ids)
       
       const newTodo: ToDo = {
         id: maxId + 1,
