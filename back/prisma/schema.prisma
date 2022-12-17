@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -8,4 +5,31 @@ generator client {
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+}
+
+model User {
+  id          String      @db.Uuid          @id @default(uuid())
+  email       String      @db.VarChar(50)   @unique
+  password    String      @db.VarChar(50)
+  name        String      @db.VarChar(20)
+  toDos       ToDo[]
+  createdAt   DateTime    @db.Timestamp()   @default(now())
+  updatedAt   DateTime    @db.Timestamp()
+}
+
+model ToDo {
+  id          Int         @db.Integer       @id @default(autoincrement())
+  toDo        String      @db.VarChar(50)
+  status      ToDoStatus                        @default(NONE)
+  author      User        @relation(fields: [authorId], references: [id])
+  authorId    String      @db.Uuid
+  createdAt   DateTime    @db.Timestamp()
+  updatedAt   DateTime    @db.Timestamp()
+}
+
+enum ToDoStatus {
+  NONE
+  DOING
+  DONE
+  REMOVED
 }
