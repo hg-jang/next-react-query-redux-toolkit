@@ -1,4 +1,4 @@
-const languages = [
+const LANGUAGES = [
   'ko',
   'eng'
 ]
@@ -13,7 +13,7 @@ interface Dictionary {
 
 // type Langues = 
 
-const dictionary = {
+const DICTIONARY_SET = {
   ko: {
     section: {
       none: '할 일 목록',
@@ -29,3 +29,5 @@ const dictionary = {
     }
   }
 }
+
+export default DICTIONARY_SET
