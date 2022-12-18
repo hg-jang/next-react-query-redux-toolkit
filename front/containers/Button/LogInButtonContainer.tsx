@@ -4,7 +4,6 @@ const LogInButtonContainer = () => {
 
   const logIn = () => {
     console.log('login');
-    
   }
 
   return (
