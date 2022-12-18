@@ -1,4 +1,4 @@
-import { Fragment, FunctionComponent, useState } from "react"
+import { DragEvent, Fragment, FunctionComponent, useState } from "react"
 import { useSelector } from "react-redux"
 
 import { RootState } from "../../store/store"
@@ -13,8 +13,8 @@ interface SectionCardProps {
   sectionName: string;
   useButton: boolean;
   status: ToDoStatus;
-  onDragOverHandler: any;
-  onDropHandler: any;
+  onDragOverHandler: (e: DragEvent<HTMLDivElement>) => void;
+  onDropHandler: (e: DragEvent<HTMLDivElement>) => void;
 }
 
 const SectionCard: FunctionComponent<SectionCardProps> = ({ sectionName, useButton, status, onDragOverHandler, onDropHandler }) => {

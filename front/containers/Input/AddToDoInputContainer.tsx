@@ -9,7 +9,7 @@ import AddToDoInput from "../../components/Input/AddToDoInput"
 import { ToDo, ToDoStatus } from "../../types/ToDo.type"
 
 const AddToDoInputContainer = () => {
-  const { toDos } = useSelector((state: RootState) => state.toDo)
+  const { user, toDos } = useSelector((state: RootState) => state.toDo)
   const dispatch = useDispatch()
 
   const [toDo, setToDo] = useState('')
@@ -22,6 +22,11 @@ const AddToDoInputContainer = () => {
     if(!toDo) return ;
     
     if(e.key === 'Enter') {
+      if(!user) {
+
+        return
+      }
+
       const ids = toDos.map(t => t.id)
       const maxId = ids.length === 0 ? 0 : Math.max(...ids)
       

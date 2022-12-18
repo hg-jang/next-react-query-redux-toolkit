@@ -2,14 +2,10 @@ import { FunctionComponent } from "react";
 
 interface AddToDoButtonProps {
   isAdding: boolean;
-  setIsAdding: any;
+  addToDo: () => void;
 }
 
-const AddToDoButton: FunctionComponent<AddToDoButtonProps> = ({ isAdding, setIsAdding }) => {
-
-  const addToDo = () => {
-    setIsAdding(!isAdding)
-  }
+const AddToDoButton: FunctionComponent<AddToDoButtonProps> = ({ isAdding, addToDo }) => {
 
   return (
     <button onClick={addToDo}
