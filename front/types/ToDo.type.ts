@@ -1,3 +1,10 @@
+export interface User {
+  id: string;
+  email: string;
+  name: string;
+  toDos: Array<ToDo>
+}
+
 export interface ToDo {
   id: number;
   toDo: string;

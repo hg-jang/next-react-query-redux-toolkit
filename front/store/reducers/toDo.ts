@@ -1,12 +1,14 @@
 import { createReducer, createAction } from '@reduxjs/toolkit'
 
-import { ToDo, ToDoStatus } from '../../types/ToDo.type';
+import { ToDo, ToDoStatus, User } from '../../types/ToDo.type';
 
 export type ToDoState = {
+  user: User | null;
   toDos: Array<ToDo>;
 }
 
 const initialState: ToDoState = {
+  user: null,
 	toDos: []
 }
 
