@@ -41,11 +41,11 @@ const LogInDialogContainer: FunctionComponent<LogInDialogContainerProps> = ({ op
         const { success, user, message } = res.data
         if(success) {
           dispatch(logIn(user))
+          handleClose()
         } else {
           alert(message)
         }
 
-        handleClose()
       }
     } catch(e) {
       console.log('e', e)

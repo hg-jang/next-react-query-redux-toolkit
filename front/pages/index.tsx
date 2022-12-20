@@ -1,10 +1,9 @@
 import Head from 'next/head'
 
-import LogInButtonContainer from '../containers/Button/LogInButtonContainer';
-import SignUpButtonContainer from '../containers/Button/SignUpButtonContainer';
 import DoingSectionCardContainer from '../containers/Card/SectionCard/DoingSectionCardContainer';
 import DoneSectionCardContainer from '../containers/Card/SectionCard/DoneSectionCardContainer';
 import NoneSectionCardContainer from '../containers/Card/SectionCard/NoneSectionCardContainer';
+import TopNavContainer from '../containers/Nav/TopNavContainer';
 
 export default function Home() {
 
@@ -17,9 +16,8 @@ export default function Home() {
       </Head>
 
       <div className='flex flex-col h-screen'>
-        <div className='flex items-center justify-end h-16 px-8'>
-          <LogInButtonContainer />
-          <SignUpButtonContainer />
+        <div className='h-16 px-8'>
+          <TopNavContainer />
         </div>
         <div className='flex gap-8 h-[calc(100%-4rem)] p-8'>
           <NoneSectionCardContainer />
