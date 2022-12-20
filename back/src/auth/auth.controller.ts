@@ -1,4 +1,5 @@
 import { Body, Controller, Delete, Get, HttpStatus, Post, Req, Res } from '@nestjs/common';
+import { User } from '@prisma/client';
 import { Response } from 'express';
 import { CreateAuthDto } from 'src/dto/auth.dto';
 import { AuthService } from './auth.service';
@@ -32,9 +33,38 @@ export class AuthController {
   }
 
   /** 로그 인 */
-  @Get()
-  logIn() {
+  @Post()
+  async logIn(
+    @Body() reqBody: { email: string; password: string },
+    @Res() res: Response<{ success: boolean; user: User; message: string }>,
+  ) {
+    const { email, password } = reqBody
 
+    const user = await this.authService.findUserByEmail(email)
+    if(user && user.password === password) {
+      res.json({
+        success: true,
+        user: user,
+        message: '',
+      })
+      return
+    }
+    if(user && user.password !== password) {
+      res.json({
+        success: false,
+        user: null,
+        message: '비밀번호가 일치하지 않습니다.',
+      })
+      return
+    }
+    if(!user) {
+      res.json({
+        success: false,
+        user: null,
+        message: '일치하는 유저 정보가 없습니다.',
+      })
+      return
+    }
   }
 
   /** 로그 아웃 */
