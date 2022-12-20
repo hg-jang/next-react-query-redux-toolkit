@@ -1,6 +1,6 @@
-import axios from "axios";
 import { ChangeEvent, Dispatch, FunctionComponent, SetStateAction, useState } from "react";
-import { useDispatch } from "react-redux";
+import axios from "axios";
+
 import SignUpDialog from "../../components/Dialog/SignUpDialog"
 
 interface SignUpDialogContainerProps {
@@ -11,8 +11,6 @@ const SignUpDialogContainer: FunctionComponent<SignUpDialogContainerProps> = ({ 
   const [email, setEmail] = useState('')
   const [name, setName] = useState('')
   const [password, setPassword] = useState('')
-
-  const dispatch = useDispatch()
 
   const handleClose = () => {
     setOpen(false);

@@ -12,6 +12,8 @@ const initialState: ToDoState = {
 	toDos: []
 }
 
+const logIn = createAction<User, 'logIn'>('logIn')
+
 const addToDo = createAction<ToDo, 'addToDo'>('addToDo')
 const removeToDo = createAction<{ id: number }, 'removeToDo'>('removeToDo')
 
@@ -21,6 +23,9 @@ const moveToNone = createAction<{ id: number }, 'moveToNone'>('moveToNone');
 
 const sampleReducer = createReducer(initialState, (builder) => 
   builder
+    .addCase(logIn, (state, action) => {
+      state.user = action.payload
+    })
     .addCase(addToDo, (state, action) => {
       state.toDos = [
         ...state.toDos,
@@ -49,6 +54,7 @@ const sampleReducer = createReducer(initialState, (builder) =>
 
 export default sampleReducer
 export {
+  logIn,
   addToDo,
   removeToDo,
   moveToDoing,

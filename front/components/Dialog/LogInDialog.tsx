@@ -1,4 +1,4 @@
-import { FunctionComponent, useState } from "react"
+import { FunctionComponent } from "react"
 
 import Button from '@mui/material/Button'
 import Dialog from '@mui/material/Dialog'
@@ -7,20 +7,19 @@ import DialogContent from '@mui/material/DialogContent'
 import DialogTitle from '@mui/material/DialogTitle'
 import TextField from '@mui/material/TextField'
 
-interface SignUpDialogProps {
+interface LogInDialogProps {
   open: boolean;
   handleClose: () => void;
-  handleSignUp: any;
+  handleLogIn: any;
   onChangeEmail: any;
-  onChangeName: any;
   onChangePassword: any;
 }
 
-const SignUpDialog: FunctionComponent<SignUpDialogProps> = ({ open, handleClose, handleSignUp, onChangeEmail, onChangeName, onChangePassword }) => {
+const LogInDialog: FunctionComponent<LogInDialogProps> = ({ open, handleClose, handleLogIn, onChangeEmail, onChangePassword }) => {
 
   return (
     <Dialog open={open} onClose={handleClose}>
-      <DialogTitle>회원가입</DialogTitle>
+      <DialogTitle>로그인</DialogTitle>
       <DialogContent>
       <TextField
         autoFocus
@@ -35,16 +34,6 @@ const SignUpDialog: FunctionComponent<SignUpDialogProps> = ({ open, handleClose,
       <TextField
         autoFocus
         margin="dense"
-        id="name"
-        label="이름"
-        type="text"
-        fullWidth
-        variant="standard"
-        onChange={onChangeName}
-      />
-      <TextField
-        autoFocus
-        margin="dense"
         id="password"
         label="비밀번호"
         type="password"
@@ -55,10 +44,10 @@ const SignUpDialog: FunctionComponent<SignUpDialogProps> = ({ open, handleClose,
 
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleSignUp}>회원가입</Button>
+        <Button onClick={handleLogIn}>로그인</Button>
       </DialogActions>
     </Dialog>
   )
 }
 
-export default SignUpDialog
+export default LogInDialog

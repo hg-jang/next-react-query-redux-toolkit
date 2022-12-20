@@ -6,13 +6,9 @@ import SignUpDialogContainer from "../Dialog/SignUpDialogContainer";
 const SignUpButtonContainer = () => {
   const [open, setOpen] = useState(false);
 
-  const openSignUpDialog = () => {
-    setOpen(true)
-  }
-
   return (
     <Fragment>
-      <DefaultBlueButton text="회원가입" onClickHandler={openSignUpDialog} />
+      <DefaultBlueButton text="회원가입" onClickHandler={() => setOpen(true)} />
       <SignUpDialogContainer open={open} setOpen={setOpen} />
     </Fragment>
   )

@@ -1,13 +1,16 @@
+import { Fragment, useState } from "react";
+
 import DefaultBlueButton from "../../components/Button/DefaultBlueButton"
+import LogInDialogContainer from "../Dialog/LogInDialogContainer";
 
 const LogInButtonContainer = () => {
-
-  const logIn = () => {
-    console.log('login');
-  }
+  const [open, setOpen] = useState(false)
 
   return (
-    <DefaultBlueButton text="로그인" onClickHandler={logIn} />
+    <Fragment>
+      <DefaultBlueButton text="로그인" onClickHandler={() => setOpen(true)} />
+      <LogInDialogContainer open={open} setOpen={setOpen} />
+    </Fragment>
   )
 }
 
