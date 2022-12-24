@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Prisma, PrismaClient, ToDoStatus, User } from '@prisma/client';
+import { Prisma, PrismaClient, ToDo, User } from '@prisma/client';
 
 @Injectable()
 export class ToDoService {
@@ -7,7 +7,7 @@ export class ToDoService {
   private prisma = new PrismaClient()
 
   /** create new toDo */
-  async createToDo(user: User, toDoContent: string) {
+  async createToDo(user: User, toDoContent: string): Promise<ToDo> {
     const author: Prisma.UserCreateNestedOneWithoutToDosInput = {
       connect: {
         id: user.id,
@@ -23,6 +23,29 @@ export class ToDoService {
     })
 
     return toDo
+  }
+
+  /** id로 투두 업데이트 */
+  async updateToDoById(id: number, dto: Partial<ToDo>): Promise<ToDo> {
+    const updateToDo = await this.prisma.toDo.update({
+      where: {
+        id: id,
+      },
+      data: dto,
+    })
+
+    return updateToDo
+  }
+
+  /** id로 투두 삭제 */
+  async deleteToDoById(id: number): Promise<ToDo> {
+    const deleteToDo = await this.prisma.toDo.delete({
+      where: {
+        id: id,
+      }
+    })
+
+    return deleteToDo
   }
 
 }

@@ -1,9 +1,9 @@
-import { Body, Controller, Post, Res } from '@nestjs/common';
+import { Body, Controller, Delete, Param, Patch, Post, Res } from '@nestjs/common';
 import { ToDo } from '@prisma/client';
 import { Response } from 'express';
 import { AuthService } from 'src/auth/auth.service';
 
-import { CreateToDoDto } from 'src/dto/toDo.dto';
+import { CreateToDoDto, DeleteToDoDto } from 'src/dto/toDo.dto';
 import { ToDoService } from './to-do.service';
 
 @Controller('to-do')
@@ -39,6 +39,51 @@ export class ToDoController {
       success: false,
       toDo: null,
       message: '',
+    })
+  }
+
+  /** Todo 수정 */
+  @Patch(':id')
+  async updateToDo(
+    @Param() params: { id: string },
+    @Body() toDoDto: Partial<ToDo>,
+    @Res() res: Response<{ success: boolean; message: string; }>
+  ) {
+    const updateToDo = await this.toDoService.updateToDoById(Number(params.id), toDoDto)
+
+    if(updateToDo) {
+      res.json({
+        success: true,
+        message: '',
+      })
+      return
+    }
+
+    res.json({
+      success: false,
+      message: '업데이트 실패!!',
+    })
+  }
+
+  /** todo 삭제 */
+  @Delete(':id')
+  async deleteToDo(
+    @Param() params: { id: string },
+    @Res() res: Response<{ success: boolean; message: string; }>
+  ) {
+    const deleteToDo = await this.toDoService.deleteToDoById(Number(params.id))
+
+    if(deleteToDo) {
+      res.json({
+        success: true,
+        message: '',
+      })
+      return
+    }
+
+    res.json({
+      success: false,
+      message: '삭제 실패',
     })
   }
 
