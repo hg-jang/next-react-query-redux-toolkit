@@ -1,12 +1,11 @@
-import { Fragment, FunctionComponent, ReactElement, ReactNode } from "react"
+import { Fragment, FunctionComponent } from "react"
 import { useDispatch } from "react-redux"
+import axios from "axios";
 
 import { moveToDoing, moveToDone, moveToNone, removeToDo } from "../../store/reducers/toDo"
-
 import { ToDoStatus, ToDoStatusChange } from "../../types/ToDo.type";
 
 import ToDoHandleButton from "../../components/Button/ToDoHandleButton"
-import axios from "axios";
 
 interface ToDoHandleButtonContainerProps {
   statusChange: ToDoStatusChange;
