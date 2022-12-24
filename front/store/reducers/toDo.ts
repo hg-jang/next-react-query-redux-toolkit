@@ -38,24 +38,32 @@ const sampleReducer = createReducer(initialState, (builder) =>
         ]
       }
     })
-    // .addCase(removeToDo, (state, action) => {
-    //   state.toDos = state.toDos.filter(t => t.id !== action.payload.id)
-    // })
-    // .addCase(moveToDoing, (state, action) => {
-    //   const toDo = state.toDos.find(t => t.id === action.payload.id);
-
-    //   if(toDo) toDo.status = ToDoStatus.DOING;
-    // })
-    // .addCase(moveToDone, (state, action) => {
-    //   const toDo = state.toDos.find(t => t.id === action.payload.id);
-
-    //   if(toDo) toDo.status = ToDoStatus.DONE;
-    // })
-    // .addCase(moveToNone, (state, action) => {
-    //   const toDo = state.toDos.find(t => t.id === action.payload.id);
-
-    //   if(toDo) toDo.status = ToDoStatus.NONE;
-    // })
+    .addCase(removeToDo, (state, action) => {
+      if(state.user) {
+        state.user.toDos = state.user.toDos.filter(t => t.id !== action.payload.id)
+      }
+    })
+    .addCase(moveToDoing, (state, action) => {
+      if(state.user) {
+        const toDo = state.user.toDos.find(t => t.id === action.payload.id);
+  
+        if(toDo) toDo.status = ToDoStatus.DOING;
+      }
+    })
+    .addCase(moveToDone, (state, action) => {
+      if(state.user) {
+        const toDo = state.user.toDos.find(t => t.id === action.payload.id);
+  
+        if(toDo) toDo.status = ToDoStatus.DONE;
+      }
+    })
+    .addCase(moveToNone, (state, action) => {
+      if(state.user) {
+        const toDo = state.user.toDos.find(t => t.id === action.payload.id);
+  
+        if(toDo) toDo.status = ToDoStatus.NONE;
+      }
+    })
 )
 
 export default sampleReducer

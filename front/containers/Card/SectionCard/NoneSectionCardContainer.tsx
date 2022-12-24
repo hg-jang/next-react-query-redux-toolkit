@@ -2,7 +2,6 @@ import { DragEvent } from "react"
 import { useDispatch } from "react-redux"
 
 import { moveToNone } from "../../../store/reducers/toDo"
-
 import { ToDoStatus } from "../../../types/ToDo.type"
 
 import SectionCard from "../../../components/Card/SectionCard"
