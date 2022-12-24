@@ -23,7 +23,7 @@ model ToDo {
   status      ToDoStatus                        @default(NONE)
   author      User        @relation(fields: [authorId], references: [id])
   authorId    String      @db.Uuid
-  createdAt   DateTime    @db.Timestamp()
+  createdAt   DateTime    @db.Timestamp()   @default(now())
   updatedAt   DateTime    @db.Timestamp()
 }
 
