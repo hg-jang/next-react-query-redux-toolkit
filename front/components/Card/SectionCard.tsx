@@ -18,7 +18,7 @@ interface SectionCardProps {
 }
 
 const SectionCard: FunctionComponent<SectionCardProps> = ({ sectionName, useButton, status, onDragOverHandler, onDropHandler }) => {
-  const { toDos } = useSelector((state: RootState) => state.toDo)
+  const toDos = useSelector((state: RootState) => state.toDo.user?.toDos)
   const [isAdding, setIsAdding] = useState(false)
 
   return (
@@ -34,7 +34,7 @@ const SectionCard: FunctionComponent<SectionCardProps> = ({ sectionName, useButt
             <div className="hidden-scrollbar h-full mt-4 overflow-auto"
               onDragOver={onDragOverHandler} onDrop={onDropHandler}
             >
-              {toDos.map(toDo => {
+              {toDos && toDos.map(toDo => {
                 return toDo.status === status && <ToDoCard key={toDo.id} toDo={toDo} />
               })}
             </div>
@@ -43,7 +43,7 @@ const SectionCard: FunctionComponent<SectionCardProps> = ({ sectionName, useButt
             <div className="hidden-scrollbar h-full overflow-auto"
               onDragOver={onDragOverHandler} onDrop={onDropHandler}
             >
-              {toDos.map(toDo => {
+              {toDos && toDos.map(toDo => {
                 return toDo.status === status && <ToDoCard key={toDo.id} toDo={toDo} />
               })}
             </div>

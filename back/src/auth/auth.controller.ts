@@ -36,7 +36,7 @@ export class AuthController {
   @Post()
   async logIn(
     @Body() reqBody: { email: string; password: string },
-    @Res() res: Response<{ success: boolean; user: User; message: string }>,
+    @Res() res: Response<{ success: boolean; user: Partial<User>; message: string }>,
   ) {
     const { email, password } = reqBody
 

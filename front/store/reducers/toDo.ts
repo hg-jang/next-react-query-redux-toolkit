@@ -4,12 +4,12 @@ import { ToDo, ToDoStatus, User } from '../../types/ToDo.type';
 
 export type ToDoState = {
   user: User | null;
-  toDos: Array<ToDo>;
+  toDos: any;
 }
 
 const initialState: ToDoState = {
   user: null,
-	toDos: []
+  toDos: [],
 }
 
 const logIn = createAction<User, 'logIn'>('logIn')
@@ -31,29 +31,31 @@ const sampleReducer = createReducer(initialState, (builder) =>
       state.user = null
     })
     .addCase(addToDo, (state, action) => {
-      state.toDos = [
-        ...state.toDos,
-        action.payload
-      ]
+      if(state.user) {
+        state.user.toDos = [
+          ...state.user.toDos,
+          action.payload,
+        ]
+      }
     })
-    .addCase(removeToDo, (state, action) => {
-      state.toDos = state.toDos.filter(t => t.id !== action.payload.id)
-    })
-    .addCase(moveToDoing, (state, action) => {
-      const toDo = state.toDos.find(t => t.id === action.payload.id);
+    // .addCase(removeToDo, (state, action) => {
+    //   state.toDos = state.toDos.filter(t => t.id !== action.payload.id)
+    // })
+    // .addCase(moveToDoing, (state, action) => {
+    //   const toDo = state.toDos.find(t => t.id === action.payload.id);
 
-      if(toDo) toDo.status = ToDoStatus.DOING;
-    })
-    .addCase(moveToDone, (state, action) => {
-      const toDo = state.toDos.find(t => t.id === action.payload.id);
+    //   if(toDo) toDo.status = ToDoStatus.DOING;
+    // })
+    // .addCase(moveToDone, (state, action) => {
+    //   const toDo = state.toDos.find(t => t.id === action.payload.id);
 
-      if(toDo) toDo.status = ToDoStatus.DONE;
-    })
-    .addCase(moveToNone, (state, action) => {
-      const toDo = state.toDos.find(t => t.id === action.payload.id);
+    //   if(toDo) toDo.status = ToDoStatus.DONE;
+    // })
+    // .addCase(moveToNone, (state, action) => {
+    //   const toDo = state.toDos.find(t => t.id === action.payload.id);
 
-      if(toDo) toDo.status = ToDoStatus.NONE;
-    })
+    //   if(toDo) toDo.status = ToDoStatus.NONE;
+    // })
 )
 
 export default sampleReducer
