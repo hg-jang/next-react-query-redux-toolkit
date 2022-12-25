@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import LogInDialog from "../../components/Dialog/LogInDialog"
 import { logIn } from "../../store/reducers/toDo";
 import { LogInReq } from "../../types/Req.type";
+import { useMutation } from "react-query";
 
 interface LogInDialogContainerProps {
   open: boolean;
@@ -29,32 +30,25 @@ const LogInDialogContainer: FunctionComponent<LogInDialogContainerProps> = ({ op
   }
 
   const logInHandler = async () => {
-    const url = '/back/api/auth'
-    const params = {
-      email, password
-    }
-
-    try {
-      const res = await axios.post<LogInReq>(url, params)
-  
-      if(res.data) {
-        const { success, user, message } = res.data
-        if(success) {
-          dispatch(logIn(user))
-          handleClose()
-        } else {
-          alert(message)
-        }
-
-      }
-    } catch(e) {
-      console.log('e', e)
-    }
+    mutate()
   }
+
+  const { isLoading, mutate } = useMutation('logIn', async () => {
+    return axios.post<LogInReq>('/back/api/auth', {
+      email, password
+    })
+  }, {
+    onSuccess: (res) => {
+      dispatch(logIn(res.data.user))
+    },
+    onError: (err) => {
+      console.log(err)
+    }
+  })
 
   return (
     <LogInDialog
-      open={open} handleClose={handleClose} handleLogIn={logInHandler}
+      isLoading={isLoading} open={open} handleClose={handleClose} handleLogIn={logInHandler}
       onChangeEmail={onChangeEmail} onChangePassword={onChangePassword}
     />
   )

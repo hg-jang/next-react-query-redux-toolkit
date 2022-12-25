@@ -6,8 +6,10 @@ import DialogActions from '@mui/material/DialogActions'
 import DialogContent from '@mui/material/DialogContent'
 import DialogTitle from '@mui/material/DialogTitle'
 import TextField from '@mui/material/TextField'
+import CircularProgress from '@mui/material/CircularProgress';
 
 interface LogInDialogProps {
+  isLoading: boolean;
   open: boolean;
   handleClose: () => void;
   handleLogIn: any;
@@ -15,7 +17,7 @@ interface LogInDialogProps {
   onChangePassword: any;
 }
 
-const LogInDialog: FunctionComponent<LogInDialogProps> = ({ open, handleClose, handleLogIn, onChangeEmail, onChangePassword }) => {
+const LogInDialog: FunctionComponent<LogInDialogProps> = ({ isLoading, open, handleClose, handleLogIn, onChangeEmail, onChangePassword }) => {
 
   return (
     <Dialog open={open} onClose={handleClose}>
@@ -44,7 +46,12 @@ const LogInDialog: FunctionComponent<LogInDialogProps> = ({ open, handleClose, h
 
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleLogIn}>로그인</Button>
+        <Button onClick={handleLogIn}>
+          {isLoading
+            ? <CircularProgress />
+            : '로그인'
+          }
+        </Button>
       </DialogActions>
     </Dialog>
   )
