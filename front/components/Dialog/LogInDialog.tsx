@@ -1,4 +1,4 @@
-import { FunctionComponent } from "react"
+import { ChangeEvent, FunctionComponent } from "react"
 
 import Button from '@mui/material/Button'
 import Dialog from '@mui/material/Dialog'
@@ -12,9 +12,9 @@ interface LogInDialogProps {
   isLoading: boolean;
   open: boolean;
   handleClose: () => void;
-  handleLogIn: any;
-  onChangeEmail: any;
-  onChangePassword: any;
+  handleLogIn: () => void;
+  onChangeEmail: (e: ChangeEvent<HTMLInputElement>) => void
+  onChangePassword: (e: ChangeEvent<HTMLInputElement>) => void
 }
 
 const LogInDialog: FunctionComponent<LogInDialogProps> = ({ isLoading, open, handleClose, handleLogIn, onChangeEmail, onChangePassword }) => {
